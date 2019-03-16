@@ -22,7 +22,7 @@ pipeline {
         stage ('Package Test') {
             steps {
                 withMaven(maven : 'LocaalMaven') {
-                    sh 'mvn package'
+                    sh 'mvn clean package'
             }
           }
         }
