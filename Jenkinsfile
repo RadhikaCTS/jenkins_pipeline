@@ -1,9 +1,9 @@
 pipeline {
     node (Slave2)
 
-    stages {agent { label 'slave-node​' }
+    stages {agent { label 'Slave2' }
         stage ('Compile Stage') {
-            agent { label 'slave-node​' }
+            agent { label 'Slave2' }
             steps {
                 withMaven(maven : 'LocalMaven') {
                     sh 'mvn clean compile'
