@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent Slave2
 
     stages {
         stage ('Compile Stage') {
@@ -7,6 +7,11 @@ pipeline {
             steps {
                 withMaven(maven : 'LocalMaven') {
                     sh 'mvn clean compile'
+                }
+            }
+            steps {
+                WithMaven ('building in slave'){
+                    echo 'building'
                 }
             }
         }
