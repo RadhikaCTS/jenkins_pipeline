@@ -1,5 +1,5 @@
 pipeline {
-    agent Slave2
+    node Slave2
 
     stages {
         stage ('Compile Stage') {
