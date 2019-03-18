@@ -1,35 +1,50 @@
 pipeline {
-    agent Slave2
+    agent { label 'MavenLabel' }
 
-    stages {agent { label 'Slave2' }
+    stages {
         stage ('Compile Stage') {
-            agent { label 'Slave2' }
+
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'Apache Maven 3.5.2') {
                     sh 'mvn clean compile'
                 }
             }
         }
-
+        
+            
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'Apache Maven 3.5.2') {
                     sh 'mvn test'
                 }
             }
         }
-        stage ('Package Test') {
-            steps {
-                withMaven(maven : 'LocalMaven') {
-                    sh 'mvn package'
-            }
-          }
-        }
+        
+                
+        stage ('Build on Slave Stage') {
 
+            steps {
+                withMaven(maven : 'Apache Maven 3.5.2') {
+                    sh 'mvn package'
+                }
+            }
+        }
+        
+        
+        stage ('Building and Integrating Sonar') {
+
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh 'mvn package sonar:sonar'
+                }
+            }
+        }
+        
+        
         stage ('Deployment Stage') {
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'Apache Maven 3.5.2') {
                     sh 'mvn install'
                 }
             }
