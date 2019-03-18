@@ -15,7 +15,7 @@ pipeline {
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'Apache Maven 3.5.2') {
+                withMaven(maven : 'MavenLabel') {
                     sh 'mvn test'
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
         stage ('Build on Slave Stage') {
 
             steps {
-                withMaven(maven : 'Apache Maven 3.5.2') {
+                withMaven(maven : 'MavenLabel') {
                     sh 'mvn package'
                 }
             }
