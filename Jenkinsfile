@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'MavenLabel' }
+    agent { label 'Slave2' }
 
     stages {
         stage ('Compile Stage') {
