@@ -35,7 +35,7 @@ pipeline {
         stage ('Building and Integrating Sonar') {
 
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('sonar') {
                     sh 'mvn package sonar:sonar'
                 }
             }
@@ -44,7 +44,7 @@ pipeline {
         
         stage ('Deployment Stage') {
             steps {
-                withMaven(maven : 'Apache Maven 3.5.2') {
+                withMaven(maven : 'LocalMaven') {
                     sh 'mvn install'
                 }
             }
