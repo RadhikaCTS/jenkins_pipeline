@@ -15,7 +15,7 @@ pipeline {
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'MavenLabel') {
+                withMaven(maven : 'LocalMaven') {
                     sh 'mvn test'
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
         stage ('Build on Slave Stage') {
 
             steps {
-                withMaven(maven : 'MavenLabel') {
+                withMaven(maven : 'LocalMaven') {
                     sh 'mvn package'
                 }
             }
