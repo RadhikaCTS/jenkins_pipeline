@@ -32,14 +32,7 @@ pipeline {
         }
         
         
-        stage ('Building and Integrating Sonar') {
-
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh 'mvn package sonar:sonar'
-                }
-            }
-        }
+              }
         
         
         stage ('Deployment Stage') {
